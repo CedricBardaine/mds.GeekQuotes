@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+
+        android:layout_weight="0.5"
+        >
+
+        <TextView
+            android:id="@+id/tv_detail_quoteText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="(quote missing)"
+            android:paddingBottom="20dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:textSize="20dp"
+            android:textColor="@color/colorLightDark"
+            android:text="(date missing)"
+            android:paddingBottom="20dp"
+            />
+
+
+        <RatingBar
+            android:id="@+id/rb_detail_stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+            android:layout_gravity="center"
+/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        >
+
+    <Button
+        android:id="@+id/bt_detail_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorWhite"
+
+        android:text="BACK" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

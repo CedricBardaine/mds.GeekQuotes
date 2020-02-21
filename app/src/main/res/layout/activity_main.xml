@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_main_quote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter your quote"
+            android:layout_weight="5"
+            />
+
+        <Button
+            android:id="@+id/bt_main_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/colorWhite"
+
+            android:text="Add"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    <!--    <LinearLayout
+            android:id="@+id/ll_main_quotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            />-->
+    <ListView
+        android:id="@+id/lv_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+</LinearLayout>
