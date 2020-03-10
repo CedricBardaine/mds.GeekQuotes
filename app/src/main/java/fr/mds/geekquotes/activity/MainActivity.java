@@ -1,23 +1,19 @@
 package fr.mds.geekquotes.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +79,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+    protected void onSaveInstanceState(Bundle outState) {
+        Serializable serialized =  (Serializable) quotes ;
+
+        outState.putSerializable("data_quotes", serialized);
+        super.onSaveInstanceState(outState);
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        quotes = (ArrayList) savedInstanceState.getSerializable("data_quotes");
+
+        aa = new QuoteArrayAdapter(this , android.R.layout.simple_list_item_1 , quotes) ;
+        lv_main_list.setAdapter(aa);
+    }
+
     void addQuote(String strQuote) {
         Quote q = new Quote(strQuote) ;
         quotes.add(q) ;
@@ -114,68 +125,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Log.e("error" , "NullPointerException while resulting from details") ;
             Toast.makeText(this, "Modification cancelled", 3 ).show();
         }
-
-
-
     }
 }
-
-
-
-/* // version with TextViews in Layout
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-
-    public static final String TAG = "GeekQuoteTag" ;
-
-    private List<Quote> quotes = new ArrayList<>() ;
-    private LinearLayout ll_main_quotes ;
-    private Button bt_main_add ;
-    private EditText et_main_quote ;
-    private ListView lv_main_list ;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        ll_main_quotes = findViewById(R.id.ll_main_quotes) ;
-        bt_main_add = findViewById(R.id.bt_main_add) ;
-        et_main_quote = findViewById(R.id.et_main_quote) ;
-        lv_main_list = findViewById(R.id.lv_main_list) ;
-
-
-        // implementation anonyme
-        bt_main_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String content = et_main_quote.getText().toString() ;
-                Log.d(TAG , "Button Click! "+ content );
-                addQuote(content) ;
-                et_main_quote.getText().clear();
-            }
-        });
-
-        for (int i = 0 ; i < 3 ; i++ )
-            quotes.add(new Quote("Quote number : " + i)) ;
-
-        for(Quote q : quotes) {
-            TextView tvQuote = new TextView(this) ;
-            tvQuote.setText(q.getStrQuote()) ;
-            quotes.add(new Quote()) ;
-            ll_main_quotes.addView(tvQuote);
-        }
-    }
-
-    void addQuote(String strQuote) {
-        Quote q = new Quote(strQuote) ;
-        quotes.add(q) ;
-        TextView tvQuote = new TextView(this) ;
-        tvQuote.setText(q.getStrQuote() );
-        ll_main_quotes.addView(tvQuote);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String contentQuote =  quotes.get(position).toString() ;
-    }
-}*/
